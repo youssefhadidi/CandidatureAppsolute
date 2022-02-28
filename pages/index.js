@@ -1,8 +1,6 @@
-import { useEffect, useState } from "react";
-import NewsItem from "../components/NewsItem"
 import axios from "axios";
+import { useEffect, useState } from "react";
 import { useStoreActions, useStoreState } from "easy-peasy";
-import InfiniteScroll from "react-infinite-scroll-component";
 import { useRouter } from "next/router";
 import Favorites from "../components/Favorites";
 import NewsList from "../components/NewsList";
@@ -15,7 +13,7 @@ function index(props) {
    * replace et addArticles sont les fonctions pour changer l'état
    */
   const favoritesStore = useStoreState(state => state.favorites)
-  const { replace, replaceFav, addArticles, addFav } = useStoreActions(actions => ({ replace: actions.replace, replaceFav: actions.replaceFav, addArticles: actions.addArticles, addFav: actions.addFav }))
+  const { replace, replaceFav, addFav } = useStoreActions(actions => ({ replace: actions.replace, replaceFav: actions.replaceFav, addFav: actions.addFav }))
 
   /**
    * searchQuery contient l'information que l'on cherchera dans le titre, la description ou le contenu
@@ -26,9 +24,10 @@ function index(props) {
   const [searchsourceQuery, setSearchSourceQuery] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
 
+  const [page, setPage] = useState(2);
 
-  // hasMore est un booleen qui dit si il y a encore des articles a récuperer dans la base de donnée
-  const [hasMore, setHasMore] = useState(true);
+    // hasMore est un booleen qui dit si il y a encore des articles a récuperer dans la base de donnée
+    const [hasMore, setHasMore] = useState(true);
 
   // sert a la gesion de l'onglet actuellement ouvert
   const [tabOpen, setTabOpen] = useState(1);
@@ -62,6 +61,7 @@ function index(props) {
         replace(res.data);
         setPage(2);
         setTabOpen(1);
+        if (res.data.length == 0) {setHasMore(false);console.log(res.data.length)}
       })
       .catch(err => {
         console.log(err)
@@ -150,11 +150,11 @@ function index(props) {
             chercher
           </button>
 
-          <div className={`tab ${tabOpen === 1 ? "hidden" : ""}`} >
+          <div className={`m-4 ${tabOpen === 1 ? "hidden" : ""}`} >
             <Favorites showDetailsHandler={showDetailsHandlerFav} isFavorite={isFavorite} handleAddToFav={handleAddToFav} handleRemoveFav={handleRemoveFav} />
           </div>
-          <div className={`tab m-4 ${tabOpen === 2 ? "hidden" : ""}`}>
-            <NewsList searchCountryQuery={searchCountryQuery} searchQuery={searchQuery} searchsourceQuery={searchsourceQuery} showDetailsHandler={showDetailsHandler} hasMore={hasMore} isFavorite={isFavorite} handleAddToFav={handleAddToFav} handleRemoveFav={handleRemoveFav} />
+          <div className={`m-4 ${tabOpen === 2 ? "hidden" : ""}`}>
+            <NewsList setHasMore={hasMore} hasMore={hasMore} searchCountryQuery={searchCountryQuery} page={page} setPage={setPage} searchQuery={searchQuery} searchsourceQuery={searchsourceQuery} showDetailsHandler={showDetailsHandler} isFavorite={isFavorite} handleAddToFav={handleAddToFav} handleRemoveFav={handleRemoveFav} />
           </div>
         </div>
       </div>
