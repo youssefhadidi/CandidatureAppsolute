@@ -22,7 +22,7 @@ function index(props) {
                 <p className="mt-2 text-gray-600">{article.content}</p>
             </div>
             <div className="flex justify-between items-center mt-4">
-                <a className="text-blue-600 hover:underline" href={article.url}>Read more</a>
+                <a className="text-blue-600 hover:underline" href={article.url} target="_blank">Read more</a>
             </div>
         </div>
         </>)
