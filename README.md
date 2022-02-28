@@ -1,12 +1,16 @@
 
 installer les dependences de l'application:
 ```
-npm install
+$ npm install
 ```
 
 
 
 Lancer l'application:
 ```
-npm run dev
+$ npm run dev
 ```
+
+
+Améliorations potentielles:
+- 
