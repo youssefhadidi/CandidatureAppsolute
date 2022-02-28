@@ -56,7 +56,7 @@ function NewsList(props) {
             </div>
         </>
         )
-    else return (<p>Aucun resultat</p>)
+    else return (<p>Aucun résultats</p>)
 }
 
 export default NewsList

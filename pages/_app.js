@@ -1,4 +1,5 @@
-import { createStore, StoreProvider, persist, useStoreState, useStoreActions } from 'easy-peasy'
+import { createStore, StoreProvider, persist} from 'easy-peasy'
+import Head from 'next/head';
 import IsHydrated from '../components/Layout/isHydrated';
 import Layout from '../components/Layout/Layout'
 import '../styles/globals.css'
@@ -11,9 +12,9 @@ function MyApp({ Component, pageProps }) {
 
 
   return (<>
-  <head>
+  <Head>
   <title>Appsolute News</title>
-  </head>
+  </Head>
     <StoreProvider store={store}>
       <IsHydrated>
         <Layout />

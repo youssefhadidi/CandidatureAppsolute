@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import heart_filled from '../assets/images/heart-filled.png'
-import heart from '../assets/images/heart.png'
+import heart_filled from '../public/assets/images/heart-filled.png'
+import heart from '../public/assets/images/heart.png'
 
 
 const NewsItem = (props) => {

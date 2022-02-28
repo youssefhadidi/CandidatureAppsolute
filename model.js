@@ -1,5 +1,8 @@
 import { action } from "easy-peasy"
 
+/**
+ * model redux qui contient les articles et les favoris et les actions associées à leur gestion
+ */
 export default {
     articles :[],
     favorites :[],

@@ -7,12 +7,12 @@ function index(props) {
     const router = useRouter();
     const { id } = router.query
     const favoritesStore = useStoreState(state => state.favorites);
-    const article= favoritesStore[id];
-    
-        return (<>
-        
-       <div className="max-w px-10 my-4 py-6 bg-white rounded-lg shadow-md">
-        <div className="h-80 lg:max-w flex-none bg-cover rounded text-center overflow-hidden bg-center" style={{backgroundImage: `url(${article.urlToImage})`}}  title={article.title}>
+    const article = favoritesStore[id];
+
+    return (<>
+
+        <div className="max-w px-10 my-4 py-6 bg-white rounded-lg shadow-md">
+            <div className="h-80 lg:max-w flex-none bg-cover rounded text-center overflow-hidden bg-center" style={{ backgroundImage: `url(${article.urlToImage})` }} title={article.title}>
             </div>
             <div className="flex justify-between items-center">
                 <span className="font-light text-gray-600">{article.publishedAt}</span>
@@ -25,7 +25,7 @@ function index(props) {
                 <a className="text-blue-600 hover:underline" href={article.url} target="_blank">Read more</a>
             </div>
         </div>
-        </>)
+    </>)
 }
 
 export default index
